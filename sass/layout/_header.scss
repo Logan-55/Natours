@@ -1,0 +1,64 @@
+.header {
+  /* Viewport */
+  height: 85vh; /* 95 % of viewport height */
+  /* Background */
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/hero-small.jpg);
+  /* all the width of the box*/
+  background-size: cover;
+  /* Top of the image stay at the top of the box*/
+  background-position: top;
+  position: relative;
+
+  @supports ((clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0))) {
+    height: 95vh; /* 95 % of viewport height */
+
+    /* give a shape : polygon(x y, x y, ...)*/
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  }
+
+  // 192dpi = 192 dots per inch = Apple retina screen
+
+  @media (min-resolution: 192dpi) and (min-width: 37.5em),
+    (-webkit-min-device-pixel-ratio: 2) and (min-wodth: 37.5em),
+    (min-width: 125em) {
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-secondary-light, 0.8),
+        rgba($color-secondary-dark, 0.8)
+      ),
+      url(../img/hero.jpg);
+  }
+
+  @include respond(phone) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
+
+  &__logo-box {
+    /* Position */
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    /* Position */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /*  */
+    text-align: center;
+  }
+}
